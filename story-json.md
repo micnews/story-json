@@ -1,12 +1,12 @@
 # story-json
 
-`story-json` is the JavaScript Object Notation (JSON) platform-agnostic document format that describes interactive content that user can "tap" through. This is an interactive storytelling format, optimized for quick consumption on a smartphone or tablet, but can be viewed on desktop as well.
+`story-json` is a JavaScript Object Notation (JSON) platform-agnostic document format that describes interactive content that user can "tap" through. This is an interactive storytelling format, optimized for quick consumption on a smartphone or tablet.
 
-"Story" consists of a set of slides (or pages). Each slide can contain various kinds of content, but in most cases, it has a short video or photo background, with the text or animation overlayed on top. Story document can be created once and then transformed into target format, for example [amp-story](https://github.com/ampproject/amphtml/blob/master/extensions/amp-story/amp-story.md). Or converted into video or shideshow.
+A "Story" consists of a set of slides (or pages). Each slide can contain various kinds of content, but in most cases, it has an image or a short video as a background, with potentially animated text elements overlayed on top. Story JSON documents can be created once and then transformed into any supported target format (for example [amp-story](https://github.com/ampproject/amphtml/blob/master/extensions/amp-story/amp-story.md)) or custom user-generated format (slideshow or video, for example).
 
 ## Format structure
 
-The following JSON is the document example:
+The following JSON is an example of a properly-formatted Story JSON document:
 
 ```json
 {
@@ -155,17 +155,19 @@ The following JSON is the document example:
 | ------------- | ------------- | ------------- | ------------- |
 | `title` | Story title. | string | no |
 | `canonicalUrl` | Primary URL associated with the story. | string | no |
-| `meta` | Story metadata. | Story metadata | no |
-| `pages` | Array of pages in the story. | Array of pages | no |
+| `meta` | Story metadata. | [Story metadata](#story-metadata) | no |
+| `canonicalUrl` | URL that will point to the story's HTML file. | string | no |
+| `pages` | Array of pages in the story. | Array of [pages](#page) | no |
+| `defaultStyles` | Default styles for each element. | Object with [element type](#element) keys and [style](#style) values | no |
 
 #### Story metadata
 
 | Property  | Description | Type | Required |
 | ------------- | ------------- | ------------- | ------------- |
-| `datePublished` | Story UTC publish date. | [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) Date | no |
-| `dateModified` | Story last modification UTC. | [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) Date | no |
+| `datePublished` | Story publish date in UTC. | [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) Date | no |
+| `dateModified` | Story last modification date in UTC. | [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) Date | no |
 | `author` | Author name. | string | no |
-| `publisher` | Story publisher metadata. | Publisher metadata | no |
+| `publisher` | Story publisher metadata. | [Publisher metadata](#publisher-metadata) | no |
 | `description` | Story description. | string | no |
 
 #### Publisher metadata
@@ -173,7 +175,7 @@ The following JSON is the document example:
 | Property  | Description | Type | Required |
 | ------------- | ------------- | ------------- | ------------- |
 | `name` | Publisher name | string | yes |
-| `logo` | Publisher logo | Publisher metadata logo |  no |
+| `logo` | Publisher logo | [Publisher metadata logo](#publisher-metadata-logo) |  no |
 
 #### Publisher metadata logo
 
@@ -185,53 +187,54 @@ The following JSON is the document example:
 
 #### Page
 
-| Property  | Description | Type | Required |
-| ------------- | ------------- | ------------- | ------------- |
-| `layers` | Content of the page data | Array of layers | yes |
+| Property  | Description | Type | Required | Notes |
+| ------------- | ------------- | ------------- | ------------- | ------------- |
+| `layers` | Content of the page data | Array of [layers](#layer) | yes |
 | `id` | Unique page identifier. | string | no |
-| `annotation` | Any additional information associated with the page. | any | no |
+| `annotation` | User-defined information associated with the page. | any | no | Will be removed in render. |
 
 #### Layer
 
-| Property  | Description | Type | Required |
-| ------------- | ------------- | ------------- | ------------- |
-| `template` | Layer type (`fill`, `thirds`, `vertical` or `horizontal`). | string | yes |
-| `elements` | Layer elements. | Array of elements | no |
-| `styles` | Layer styles. | Styles | no |
-| `annotation` | Any additional information associated with the layer. | any | no |
+| Property  | Description | Type | Required | Notes |
+| ------------- | ------------- | ------------- | ------------- | ------------- |
+| `template` | Layer type. | `'fill'`, `'thirds'`, `'vertical'` or `'horizontal'` | yes |
+| `elements` | Layer elements. | Array of [elements](#element) | no | Has no effect in layers with `template: 'fill'`. |
+| `element` | Layer element in a layer with `template: 'fill'`. | [Element](#element) | no | Has no effect in layers without `template: 'fill'`.|
+| `styles` | Layer styles. | [Styles object](#styles) | no |
+| `annotation` | User-defined information associated with the layer | any | no | Will be removed in render. |
 
 #### Element
 
 | Property  | Description | Type | Required |
 | ------------- | ------------- | ------------- | ------------- |
-| `type` | Element type (`container`, `image`, `video`, `paragraph`, `heading`, `heading1`, `heading2`, `heading3`, `heading4`, `heading5` or `heading6`). | string | yes |
+| `type` | Element type. | `'container'`, `'image'`, `'video'`, `'paragraph'`, `'heading'`, `'heading1'`, `'heading2'`, `'heading3'`, `'heading4'`, `'heading5'`, or `'heading6'` | yes |
 | `id` | Unique element identifier. | string | no |
-| `styles` | Element styles. | Styles | no |
-| `annotation` | Any additional information associated with the element. | any | no |
+| `styles` | Element styles. | [Styles object](#styles) | no |
+| `annotation` | User-defined information associated with the element; will be removed in render. | any | no |
 
 #### Styles
 
-Styles are very similar to CSS styles, but intended to be usable on platforms that don't use HTML renderer. For example, via React Native or implemented in a custom renderer. Depending on platform, some properties may be ignored.
+Styles are very similar to CSS styles, but are intended to be usable and easy to reason about on platforms that don't use an HTML renderer; for example, via React Native. Depending on the chosen platform's capabilities, some properties may be ignored.
 
-| Property  | Description | Type | Required |
-| ------------- | ------------- | ------------- | ------------- |
-| `position` | Element position (`relative` or `absolute`). | string | no |
-| `top` | Top position | Distance | no |
-| `bottom` | Bottom position | Distance | no |
-| `left` | Left position | Distance | no |
-| `right` | Right position | Distance | no |
-| `width` | Element width | Distance | no |
-| `height` | Element height | Distance | no |
-| `margin` | Element margin (top, bottom, left and right) | Distance | no |
-| `marginTop` | Element margin top | Distance | no |
-| `marginBottom` | Element margin bottom | Distance | no |
-| `marginLeft` | Element margin left | Distance | no |
-| `marginRight` | Element margin right | Distance | no |
-| `padding` | Element padding (top, bottom, left and right) | Distance | no |
-| `paddingTop` | Element padding top | Distance | no |
-| `paddingBottom` | Element padding bottom | Distance | no |
-| `paddingLeft` | Element padding left | Distance | no |
-| `paddingRight` | Element padding right | Distance | no |
+| Property  | Description | Type | Required | Notes |
+| ------------- | ------------- | ------------- | ------------- | ------------- |
+| `position` | Element position. | `'relative'` or `'absolute'` | no |
+| `top` | Top position | [Distance](#distance-style) | no |
+| `bottom` | Bottom position | [Distance](#distance-style) | no |
+| `left` | Left position | [Distance](#distance-style) | no |
+| `right` | Right position | [Distance](#distance-style) | no |
+| `width` | Element width | [Distance](#distance-style) | no |
+| `height` | Element height | [Distance](#distance-style) | no |
+| `margin` | Element margin (top, bottom, left and right) | [Distance](#distance-style) | no |
+| `marginTop` | Element margin top | [Distance](#distance-style) | no |
+| `marginBottom` | Element margin bottom | [Distance](#distance-style) | no |
+| `marginLeft` | Element margin left | [Distance](#distance-style) | no |
+| `marginRight` | Element margin right | [Distance](#distance-style) | no |
+| `padding` | Element padding (top, bottom, left and right) | [Distance](#distance-style) | no |
+| `paddingTop` | Element padding top | [Distance](#distance-style) | no |
+| `paddingBottom` | Element padding bottom | [Distance](#distance-style) | no |
+| `paddingLeft` | Element padding left | [Distance](#distance-style) | no |
+| `paddingRight` | Element padding right | [Distance](#distance-style) | no |
 | `border` | Element border (top, bottom, left and right) | Border | no |
 | `borderTop` | Element border top | Border | no |
 | `borderBottom` | Element border bottom | Border | no |
@@ -242,11 +245,11 @@ Styles are very similar to CSS styles, but intended to be usable on platforms th
 | `borderTopRightRadius` | Element top-right border radius | number | no |
 | `borderBottomLeftRadius` | Element bottom-left border radius | number | no |
 | `borderBottomRightRadius` | Element bottom-right border radius | number | no |
-| `display` | Display type (`block`, `inline`, `inline-block`, `flex` or `inline-flex`) | string | no |
-| `flexDirection` | `row`, `row-reverse`, `column` or `column-reverse` | string | no |
-| `justifyContent` | `flex-start`, `center`, `flex-end`, `space-around` or `space-between` | string | no |
-| `alignItems` | `flex-start`, `center`, `flex-end` or `stretch` | string | no |
-| `textAlign` | `auto`, `left`, `right`, `center` or `justify` | string | no |
+| `display` | Display type | `'block'`, `'inline'`, `'inline-block'`, `'flex'`, or `'inline-flex'` | no |
+| `flexDirection` | `'row'`, `'row-reverse'`, `'column'`, or `'column-reverse'` | string | no |
+| `justifyContent` | `'flex-start'`, `'center'`, `'flex-end'`, `'space-around'`, or `'space-between'` | string | no |
+| `alignItems` | `'flex-start'`, `'center'`, `'flex-end'`, or `'stretch'` | string | no |
+| `textAlign` | `'auto'`, `'left'`, `'right'`, `'center'`, or `'justify'` | string | no |
 | `backgroundColor` | Background color | RGBA hex string | no |
 | `backgroundLinearGradient` | Linear gradient | Linear Gradient | no |
 | `color` | Text color | RGBA hex string | no |
@@ -254,16 +257,16 @@ Styles are very similar to CSS styles, but intended to be usable on platforms th
 | `fontFamily` | Text font | string | no |
 | `fontSize` | Text font size | number | no |
 | `lineHeight` | Text line height | number | no |
-| `fontStyle` | `normal` or `italic` | string | no |
+| `fontStyle` | `'normal'` or `'italic'` | string | no |
 | `textShadow` | Shadow effect | Text shadow or array of text shadows | no |
 | `opacity` | Opacity | number | no |
 | `transform` | Transforms to apply to element | Array of transforms | no |
 | `filter` | Filters to apply to element | Array of filters | no |
-| `backdropFilter` | Backdrop filters to apply to element | Array of filters | no |
+| `backdropFilter` | Backdrop filters to apply to element | Array of filters | no | https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter |
 
 #### Distance Style
 
-`Distance` - absolute number or percentage string (for example, `10` or `10%`)
+`Distance` - absolute number or percentage string (for example, `10` or `'10%'`)
 
 #### Border Style
 
@@ -277,21 +280,21 @@ Styles are very similar to CSS styles, but intended to be usable on platforms th
 
 | Property  | Description | Type | Required |
 | ------------- | ------------- | ------------- | ------------- |
-| `direction` | Direction angle | string | yes |
-| `stops` | Gradient stops | Array of gradient stops | yes |
+| `direction` | Direction angle | angle string | yes |
+| `stops` | Gradient stops | Array of [linear gradient stops](#linear-gradient-stop) | yes |
 
 #### Linear Gradient Stop
 
 | Property  | Description | Type | Required |
 | ------------- | ------------- | ------------- | ------------- |
 | `color` | Gradient stop color | RGBA hex string | yes |
-| `distance` | Gradient stop distance | Distance | no |
+| `distance` | Gradient stop distance | [Distance](#distance-style) | no |
 
 #### Shadow and Box Shadow
 
 | Property  | Description | Type | Required |
 | ------------- | ------------- | ------------- | ------------- |
-| `offset` | Shadow offsets | Object with x and y properies (numbers) | yes |
+| `offset` | Shadow offsets | { x: number, y: number } | yes |
 | `color` | Shadow color | RGBA hex string | no |
 | `blurRadius` | Shadow blur radius | number | no |
 | `spread` | Shadow spread (Box Shadow only) | number | no |
@@ -303,18 +306,18 @@ Transform object contains one of the following properties:
 | Property | Type |
 | ------------- | ------------- |
 | `perspective` | number |
-| `rotate` | angle (number) |
-| `rotateX` | angle (number) |
-| `rotateY` | angle (number) |
-| `rotateZ` | angle (number) |
+| `rotate` | angle string |
+| `rotateX` | angle string |
+| `rotateY` | angle string |
+| `rotateZ` | angle string |
 | `scale` | number |
 | `scaleX` | number |
 | `scaleY` | number |
 | `scaleZ` | number |
-| `translateX` | Distance |
-| `translateY` | Distance |
-| `skewX` | number |
-| `skewY` | number |
+| `translateX` | [Distance](#distance-style) |
+| `translateY` | [Distance](#distance-style) |
+| `skewX` | angle string |
+| `skewY` | angle string |
 
 #### Filter
 
@@ -322,6 +325,6 @@ Filter object contains one of the following properties:
 
 | Property | Type |
 | ------------- | ------------- |
-| `blur` | Distance |
+| `blur` | [Distance](#distance-style) |
 | `brightness` | number |
 | `grayscale` | percentage string |
