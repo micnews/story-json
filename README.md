@@ -211,7 +211,7 @@ The following JSON is an example of a properly-formatted Story JSON document:
 
 | Property  | Description | Type | Required | Notes |
 | ------------- | ------------- | ------------- | ------------- | ------------- |
-| `template` | Layer type. | `'fill'`, `'thirds'`, `'vertical'` or `'horizontal'` | yes |
+| `template` | Layer type (*all templates are deprecated except `fill`, which is going to be a default*). | `'fill'`, `'thirds'`, `'vertical'` or `'horizontal'` | yes |
 | `elements` | Layer elements. | Array of [elements](#element) | no | Has no effect in layers with `template: 'fill'`. |
 | `element` | Layer element in a layer with `template: 'fill'`. | [Element](#element) | no | Has no effect in layers without `template: 'fill'`.|
 | `styles` | Layer styles. | [Styles object](#styles) | no |
@@ -259,7 +259,7 @@ Styles are very similar to CSS styles, but are intended to be usable and easy to
 | `borderTopRightRadius` | Element top-right border radius | number | no |
 | `borderBottomLeftRadius` | Element bottom-left border radius | number | no |
 | `borderBottomRightRadius` | Element bottom-right border radius | number | no |
-| `display` | Display type | `'block'`, `'inline'`, `'inline-block'`, `'flex'`, or `'inline-flex'` | no |
+| `display` | Display type | `'flex'`, or `'none'` | no |
 | `flexDirection` | `'row'`, `'row-reverse'`, `'column'`, or `'column-reverse'` | string | no |
 | `justifyContent` | `'flex-start'`, `'center'`, `'flex-end'`, `'space-around'`, or `'space-between'` | string | no |
 | `alignItems` | `'flex-start'`, `'center'`, `'flex-end'`, or `'stretch'` | string | no |
