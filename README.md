@@ -4,6 +4,14 @@
 
 A "Story" consists of a set of slides (or pages). Each slide can contain various kinds of content, but in most cases, it has an image or a short video as a background, with potentially animated text elements overlayed on top. Story JSON documents can be created once and then transformed into any supported target format (for example [amp-story](https://github.com/ampproject/amphtml/blob/master/extensions/amp-story/amp-story.md)) or custom user-generated format (slideshow or video, for example).
 
+## Target formats
+
+These are currently supported target formats:
+
+[AMP story](https://github.com/micnews/story-json-to-amp)
+
+[Video](https://github.com/micnews/story-json-to-video)
+
 ## Format structure
 
 The following JSON is an example of a properly-formatted Story JSON document:
