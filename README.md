@@ -12,6 +12,12 @@ These are currently supported target formats:
 
 [Video](https://github.com/micnews/story-json-to-video)
 
+## Layout and styles
+
+`story-json` uses Flexbox layout and styles that in most cases match CSS (`camelCase` notation, e.g. `justifyContent`). Because we want to support platforms other than the web, the list of styles is limited. Current video implementation uses [Yoga](https://yogalayout.com/), cross platform layout engine made by Facebook, used in [React Native](https://facebook.github.io/react-native/).
+
+Default value for `flexDirection` is `row`.
+
 ## Format structure
 
 The following JSON is an example of a properly-formatted Story JSON document:
