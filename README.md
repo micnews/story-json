@@ -1,8 +1,8 @@
 # story-json
 
-`story-json` is a JavaScript Object Notation (JSON) platform-agnostic document format that describes interactive content that user can "tap" through. This is an interactive storytelling format, optimized for quick consumption on a smartphone or tablet.
+`story-json` is a JavaScript Object Notation (JSON) platform-agnostic document format that describes interactive content that user can "tap" through. This is an interactive storytelling format, optimized for quick consumption on a smartphone or tablet. See an example [here](https://mic.com/stories/327/what-happens-in-your-brain-when-you-listen-to-music).
 
-A "Story" consists of a set of slides (or pages). Each slide can contain various kinds of content, but in most cases, it has an image or a short video as a background, with potentially animated text elements overlayed on top. Story JSON documents can be created once and then transformed into any supported target format (for example [amp-story](https://github.com/ampproject/amphtml/blob/master/extensions/amp-story/amp-story.md)) or custom user-generated format (slideshow or video, for example).
+A "Story" consists of a set of pages (or slides). Each page can contain various kinds of content. In most cases a page will have an image or short video as a background, with elements overlayed on top. Story JSON documents can be created once and then transformed into any supported target format.
 
 ## Target formats
 
@@ -14,9 +14,9 @@ These are currently supported target formats:
 
 ## Layout and styles
 
-`story-json` uses Flexbox layout and styles that in most cases match CSS (`camelCase` notation, e.g. `justifyContent`). Because we want to support platforms other than the web, the list of styles is limited. Current video implementation uses [Yoga](https://yogalayout.com/), cross platform layout engine made by Facebook, used in [React Native](https://facebook.github.io/react-native/).
+`story-json` uses Flexbox layout and styles that in most cases match CSS (`camelCase` notation, e.g. `justifyContent`). Since we want to support platforms other than the web, the list of styles is limited. Our current video implementation uses [Yoga](https://yogalayout.com/), a cross-platform layout engine made by Facebook, used in [React Native](https://facebook.github.io/react-native/).
 
-Default value for `flexDirection` is `row`.
+The default value for `flexDirection` is `row`.
 
 ## Format structure
 
