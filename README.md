@@ -2,7 +2,9 @@
 
 `story-json` is a JavaScript Object Notation (JSON) platform-agnostic document format that describes interactive content that user can "tap" through. This is an interactive storytelling format, optimized for quick consumption on a smartphone or tablet. See an example [here](https://mic.com/stories/327/what-happens-in-your-brain-when-you-listen-to-music).
 
-A "Story" consists of a set of pages (or slides). Each page can contain various kinds of content. In most cases a page will have an image or short video as a background, with elements overlayed on top. Story JSON documents can be created once and then transformed into any supported target format.
+A "Story" consists of a set of pages (or slides). Each page can contain various kinds of content. In most cases a page will have an image or short video as a background, with elements overlayed on top. Story-JSON documents can be created once and then transformed into any supported target format. This is based on the AMP Project's design system for Stories, which you can find [here](https://www.ampproject.org/docs/tutorials/visual_story/parts_of_story).
+
+Story-JSON exists because we expect the Story format will be adopted by more and more platforms over time. Story-JSON serves as a convenient base format from which multi-platform distribution can happen automatically. Our main inspiration for this project was the [Article-JSON](https://github.com/micnews/article-json) format we developed to solve an analogous problem for articles.
 
 ## Target formats
 
