@@ -241,11 +241,11 @@ Styles are very similar to CSS styles, but are intended to be usable and easy to
 | `right` | Right position | [Distance](#distance-style) | no |
 | `width` | Element width | [Distance](#distance-style) | no |
 | `height` | Element height | [Distance](#distance-style) | no |
-| `margin` | Element margin (top, bottom, left and right) | [Distance](#distance-style) | no |
-| `marginTop` | Element margin top | [Distance](#distance-style) | no |
-| `marginBottom` | Element margin bottom | [Distance](#distance-style) | no |
-| `marginLeft` | Element margin left | [Distance](#distance-style) | no |
-| `marginRight` | Element margin right | [Distance](#distance-style) | no |
+| `margin` | Element margin (top, bottom, left and right) | [Distance](#distance-style) | no | Not currently supported by `amp-story` |
+| `marginTop` | Element margin top | [Distance](#distance-style) | no | Not currently supported by `amp-story` |
+| `marginBottom` | Element margin bottom | [Distance](#distance-style) | no | Not currently supported by `amp-story` |
+| `marginLeft` | Element margin left | [Distance](#distance-style) | no | Not currently supported by `amp-story` |
+| `marginRight` | Element margin right | [Distance](#distance-style) | no | Not currently supported by `amp-story` |
 | `padding` | Element padding (top, bottom, left and right) | [Distance](#distance-style) | no |
 | `paddingTop` | Element padding top | [Distance](#distance-style) | no |
 | `paddingBottom` | Element padding bottom | [Distance](#distance-style) | no |
