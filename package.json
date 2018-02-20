@@ -1,0 +1,30 @@
+{
+  "name": "story-json",
+  "version": "0.0.0",
+  "description": "Story JSON format description",
+  "main": "index.js",
+  "bin": {
+    "story-json-validate": "./bin/story-json-validate.js"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "test": "./bin/story-json-validate.js examples/*/story.json && npm run lint"
+  },
+  "author": "Mic Network Inc.",
+  "license": "MIT",
+  "dependencies": {
+    "jsonschema": "^1.2.2",
+    "minimist": "^1.2.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "eslint": "^3.15.0",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-config-mic": "^1.0.0",
+    "eslint-plugin-babel": "^4.1.2",
+    "eslint-plugin-flowtype": "^2.43.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.10.3"
+  }
+}

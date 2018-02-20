@@ -1,46 +1,37 @@
 {
+  "version": 1,
   "title": "Hello World",
   "pages": [
     {
       "layers": [
         {
-          "template": "fill",
-          "element": {
-            "type": "container",
-            "styles": {
-              "backgroundColor": "#87d687"
-            }
+          "type": "container",
+          "styles": {
+            "flex": 1,
+            "backgroundColor": "#87d687"
           }
         },
         {
-          "template": "vertical",
+          "type": "container",
+          "styles": {
+            "flexDirection": "column",
+            "justifyContent": "center",
+            "alignItems": "center",
+            "flex": 1
+          },
           "elements": [
             {
-              "type": "container",
-              "styles": {
-                "flexDirection": "column",
-                "textAlign": "center",
-                "justifyContent": "center",
-                "position": "absolute",
-                "top": 0,
-                "left": 0,
-                "width": "100%",
-                "height": "100%",
-                "display": "flex"
-              },
-              "elements": [
-                {
-                  "type": "heading",
-                  "text": "Hello World",
-                  "styles": {
-                    "fontFamily": "sans-serif"
-                  }
-                }
-              ]
+              "type": "heading",
+              "text": "Hello World"
             }
           ]
         }
       ]
     }
-  ]
+  ],
+  "defaultStyles": {
+    "heading": {
+      "fontFamily": "sans-serif"
+    }
+  }
 }
