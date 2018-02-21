@@ -26,6 +26,7 @@ The following JSON is an example of a properly-formatted Story JSON document:
 
 ```json
 {
+  "version": 1,
   "title": "Story Title",
   "canonicalUrl": "https://example.com/story",
   "meta": {
@@ -48,29 +49,25 @@ The following JSON is an example of a properly-formatted Story JSON document:
       "autoAdvanceAfter": 5,
       "layers": [
         {
-          "template": "fill",
-          "annotation": "Layer Annotation",
-          "element": {
-            "type": "video",
-            "annotation": "Video Annotation",
-            "sources": [
-              {
-                "source": "https://example.com/video.m3u8",
-                "type": "application/x-mpegURL"
-              }
-            ],
-            "width": 1900,
-            "height": 600,
-            "layout": "responsive",
-            "poster": "https://example.com/poster.jpg",
-            "loop": true,
-            "autoplay": true
-          }
+          "type": "video",
+          "annotation": "Video Annotation",
+          "sources": [
+            {
+              "source": "https://example.com/video.m3u8",
+              "type": "application/x-mpegURL"
+            }
+          ],
+          "width": 1900,
+          "height": 600,
+          "layout": "responsive",
+          "poster": "https://example.com/poster.jpg",
+          "loop": true,
+          "autoplay": true
         }
       ]
     },
     {
-      "template": "vertical",
+      "type": "container",
       "styles": {
         "justifyContent": "flex-end",
         "alignItems": "flex-end"
