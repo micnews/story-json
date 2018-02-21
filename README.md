@@ -20,9 +20,67 @@ These are currently supported target formats:
 
 The default value for `flexDirection` is `row`.
 
+## Validator
+
+This repository includes `story-json` validator based on [JSON Schema](http://json-schema.org/).
+
+Install using `npm`:
+
+```bash
+npm i story-json -g
+```
+
+Usage:
+
+```bash
+story-json-validate <story.json>
+```
+
 ## Format structure
 
-The following JSON is an example of a properly-formatted Story JSON document:
+"Hello World" example, one page with "Hello World" text in the center:
+
+```json
+{
+  "version": 1,
+  "title": "Hello World",
+  "pages": [
+    {
+      "layers": [
+        {
+          "type": "container",
+          "styles": {
+            "flex": 1,
+            "backgroundColor": "#87d687"
+          }
+        },
+        {
+          "type": "container",
+          "styles": {
+            "flexDirection": "column",
+            "justifyContent": "center",
+            "alignItems": "center",
+            "flex": 1
+          },
+          "elements": [
+            {
+              "type": "heading",
+              "text": "Hello World"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "defaultStyles": {
+    "heading": {
+      "fontFamily": "sans-serif"
+    }
+  }
+}
+```
+
+More advanced example of a properly-formatted Story JSON document:
 
 ```json
 {
