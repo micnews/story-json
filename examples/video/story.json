@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "title": "Hello World",
+  "pages": [
+    {
+      "layers": [
+        {
+          "type": "video",
+          "loop": true,
+          "sources": [{
+            "source":"https://files.mic.com/story-assets/videos/kz9z9ftrfpppoymubxqxlypc9tmonynoryojyows3cwu87oniyuezlf4iytcc8ik.m3u8",
+            "type":"application/vnd.apple.mpegurl"
+          }, {
+            "source":"https://files.mic.com/story-assets/videos/kz9z9ftrfpppoymubxqxlypc9tmonynoryojyows3cwu87oniyuezlf4iytcc8ik.mp4",
+            "type":"video/mp4"
+          }]
+        },
+        {
+          "type": "container",
+          "styles": {
+            "flexDirection": "column",
+            "justifyContent": "center",
+            "alignItems": "center",
+            "textAlign": "center",
+            "color": "#ff3a3a"
+          },
+          "elements": [
+            {
+              "type": "heading",
+              "text": "This page has video background"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "defaultStyles": {
+    "heading": {
+      "fontFamily": "sans-serif"
+    }
+  }
+}
