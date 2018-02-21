@@ -7,7 +7,6 @@
         {
           "type": "container",
           "styles": {
-            "flex": 1,
             "backgroundColor": "#87d687"
           }
         },
@@ -16,8 +15,7 @@
           "styles": {
             "flexDirection": "column",
             "justifyContent": "center",
-            "alignItems": "center",
-            "flex": 1
+            "alignItems": "center"
           },
           "elements": [
             {
