@@ -224,6 +224,7 @@ More advanced example of a properly-formatted Story JSON document:
 
 | Property  | Description | Type | Required |
 | ------------- | ------------- | ------------- | ------------- |
+| `version` | Format version (latest is `1`). | number | yes |
 | `title` | Story title. | string | no |
 | `canonicalUrl` | Primary URL associated with the story. | string | no |
 | `meta` | Story metadata. | [Story metadata](#story-metadata) | no |
