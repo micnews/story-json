@@ -218,6 +218,8 @@ More advanced example of a properly-formatted Story JSON document:
 }
 ```
 
+See [more examples](https://github.com/micnews/story-json/tree/master/examples)
+
 ## Document properties
 
 #### Top level
