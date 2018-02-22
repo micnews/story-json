@@ -79,7 +79,7 @@ story-json-validate <story.json>
 }
 ```
 
-More advanced example of a properly-formatted Story JSON document:
+`story-json` document format example:
 
 ```json
 {
