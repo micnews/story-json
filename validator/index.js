@@ -4,13 +4,13 @@ const storyJson = new Validator();
 
 // Extended color validator from jsonschema that also supports rgba()
 // https://github.com/tdegrunt/jsonschema/blob/master/lib/helpers.js
-const color = /^(#?([0-9A-Fa-f]{3}){1,2}\b|aqua|black|blue|fuchsia|gray|green|lime|maroon|navy|olive|orange|purple|red|silver|teal|white|yellow|(rgb\(\s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*,\s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*,\s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*\))|(rgba\(\s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*,\s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*,\s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*,\s*\b([0-1]\.\d+)\b\s*\))|(rgb\(\s*(\d?\d%|100%)+\s*,\s*(\d?\d%|100%)+\s*,\s*(\d?\d%|100%)+\s*\)))$/;
+const color = /^(#?([0-9A-Fa-f]{3}){1,2}\b|transparent|aqua|black|blue|fuchsia|gray|green|lime|maroon|navy|olive|orange|purple|red|silver|teal|white|yellow|(rgb\(\s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*,\s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*,\s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*\))|(rgba\(\s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*,\s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*,\s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*,\s*\b([0-1](\.\d+)?)\b\s*\))|(rgb\(\s*(\d?\d%|100%)+\s*,\s*(\d?\d%|100%)+\s*,\s*(\d?\d%|100%)+\s*\)))$/;
 
 const distanceSchema = {
   id: '/Distance',
   oneOf: [
     { type: 'number' },
-    { type: 'string', pattern: /^[-0-9.]+%$/ },
+    { type: 'string', pattern: /^-?[0-9.]+%$/ },
   ],
 };
 storyJson.addSchema(distanceSchema, distanceSchema.id);
@@ -65,7 +65,7 @@ const linearGradientSchema = {
         type: 'object',
         properties: {
           color: { type: 'string', pattern: color, required: true },
-          distance: { $ref: '/Distance', required: true },
+          distance: { $ref: '/Distance', required: false },
         },
       },
     },
@@ -142,19 +142,19 @@ const stylesSchema = {
       type: 'array',
       items: {
         oneOf: [
-          { type: 'object', properties: { perspective: { type: 'number' } } },
-          { type: 'object', properties: { rotate: { $ref: '/Angle' } } },
-          { type: 'object', properties: { rotateX: { $ref: '/Angle' } } },
-          { type: 'object', properties: { rotateY: { $ref: '/Angle' } } },
-          { type: 'object', properties: { rotateZ: { $ref: '/Angle' } } },
-          { type: 'object', properties: { scale: { type: 'number' } } },
-          { type: 'object', properties: { scaleX: { type: 'number' } } },
-          { type: 'object', properties: { scaleY: { type: 'number' } } },
-          { type: 'object', properties: { scaleZ: { type: 'number' } } },
-          { type: 'object', properties: { translateX: { $ref: '/Distance' } } },
-          { type: 'object', properties: { translateY: { $ref: '/Distance' } } },
-          { type: 'object', properties: { skewX: { $ref: '/Angle' } } },
-          { type: 'object', properties: { skewY: { $ref: '/Angle' } } },
+          { type: 'object', properties: { perspective: { type: 'number' } }, additionalProperties: false },
+          { type: 'object', properties: { rotate: { $ref: '/Angle' } }, additionalProperties: false },
+          { type: 'object', properties: { rotateX: { $ref: '/Angle' } }, additionalProperties: false },
+          { type: 'object', properties: { rotateY: { $ref: '/Angle' } }, additionalProperties: false },
+          { type: 'object', properties: { rotateZ: { $ref: '/Angle' } }, additionalProperties: false },
+          { type: 'object', properties: { scale: { type: 'number' } }, additionalProperties: false },
+          { type: 'object', properties: { scaleX: { type: 'number' } }, additionalProperties: false },
+          { type: 'object', properties: { scaleY: { type: 'number' } }, additionalProperties: false },
+          { type: 'object', properties: { scaleZ: { type: 'number' } }, additionalProperties: false },
+          { type: 'object', properties: { translateX: { $ref: '/Distance' } }, additionalProperties: false },
+          { type: 'object', properties: { translateY: { $ref: '/Distance' } }, additionalProperties: false },
+          { type: 'object', properties: { skewX: { $ref: '/Angle' } }, additionalProperties: false },
+          { type: 'object', properties: { skewY: { $ref: '/Angle' } }, additionalProperties: false },
         ],
       },
     },
@@ -320,4 +320,6 @@ const schema = {
   },
 };
 
-module.exports = json => storyJson.validate(json, schema);
+module.exports = json => storyJson.validate(json, schema, {
+  nestedErrors: true,
+});
