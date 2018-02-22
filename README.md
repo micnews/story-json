@@ -313,9 +313,9 @@ Styles are very similar to CSS styles, but are intended to be usable and easy to
 | `justifyContent` | `'flex-start'`, `'center'`, `'flex-end'`, `'space-around'`, or `'space-between'` | string | no |
 | `alignItems` | `'flex-start'`, `'center'`, `'flex-end'`, or `'stretch'` | string | no |
 | `textAlign` | `'auto'`, `'left'`, `'right'`, `'center'`, or `'justify'` | string | no |
-| `backgroundColor` | Background color | RGBA hex string | no |
+| `backgroundColor` | Background color | RGBA hex string, `rgb(r,g,b)`, `rgba(r,g,b,a)` | no |
 | `backgroundLinearGradient` | Linear gradient | Linear Gradient | no |
-| `color` | Text color | RGBA hex string | no |
+| `color` | Text color | RGBA hex string, `rgb(r,g,b)`, `rgba(r,g,b,a)` | no |
 | `boxShadow` | Shadow effect | Box shadow or array of box shadows | no |
 | `fontFamily` | Text font | string | no |
 | `fontSize` | Text font size | number | no |
@@ -336,7 +336,7 @@ Styles are very similar to CSS styles, but are intended to be usable and easy to
 | Property  | Description | Type | Required |
 | ------------- | ------------- | ------------- | ------------- |
 | `width` | Border width | number | yes |
-| `color` | Border color | RGBA hex string | yes |
+| `color` | Border color | RGBA hex string, `rgb(r,g,b)`, `rgba(r,g,b,a)` | yes |
 | `style` | Border style (`solid`, `dotted`, `dashed`) | string | yes |
 
 #### Linear Gradient
@@ -350,7 +350,7 @@ Styles are very similar to CSS styles, but are intended to be usable and easy to
 
 | Property  | Description | Type | Required |
 | ------------- | ------------- | ------------- | ------------- |
-| `color` | Gradient stop color | RGBA hex string | yes |
+| `color` | Gradient stop color | RGBA hex string, `rgb(r,g,b)`, `rgba(r,g,b,a)` | yes |
 | `distance` | Gradient stop distance | [Distance](#distance-style) | no |
 
 #### Shadow and Box Shadow
@@ -358,7 +358,7 @@ Styles are very similar to CSS styles, but are intended to be usable and easy to
 | Property  | Description | Type | Required |
 | ------------- | ------------- | ------------- | ------------- |
 | `offset` | Shadow offsets | { x: number, y: number } | yes |
-| `color` | Shadow color | RGBA hex string | no |
+| `color` | Shadow color | RGBA hex string, `rgb(r,g,b)`, `rgba(r,g,b,a)` | no |
 | `blurRadius` | Shadow blur radius | number | no |
 | `spread` | Shadow spread (Box Shadow only) | number | no |
 
