@@ -2,6 +2,10 @@ const Validator = require('jsonschema').Validator;
 
 const storyJson = new Validator();
 
+// Extended color validator from jsonschema that also supports rgba()
+// https://github.com/tdegrunt/jsonschema/blob/master/lib/helpers.js
+const color = /^(#?([0-9A-Fa-f]{3}){1,2}\b|aqua|black|blue|fuchsia|gray|green|lime|maroon|navy|olive|orange|purple|red|silver|teal|white|yellow|(rgb\(\s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*,\s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*,\s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*\))|(rgba\(\s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*,\s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*,\s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*,\s*\b([0-1]\.\d+)\b\s*\))|(rgb\(\s*(\d?\d%|100%)+\s*,\s*(\d?\d%|100%)+\s*,\s*(\d?\d%|100%)+\s*\)))$/;
+
 const distanceSchema = {
   id: '/Distance',
   oneOf: [
@@ -25,7 +29,7 @@ const borderSchema = {
   type: 'object',
   properties: {
     width: { type: 'number', required: true },
-    color: { type: 'string', format: 'color', required: true },
+    color: { type: 'string', pattern: color, required: true },
     style: { enum: ['solid', 'dotted', 'dashed'], required: true },
   },
 };
@@ -42,7 +46,7 @@ const shadowSchema = {
         y: { type: 'number' },
       },
     },
-    color: { type: 'string', format: 'color', required: true },
+    color: { type: 'string', pattern: color, required: true },
     blurRadius: { type: 'number' },
     spread: { type: 'number' },
   },
@@ -60,7 +64,7 @@ const linearGradientSchema = {
       items: {
         type: 'object',
         properties: {
-          color: { type: 'string', format: 'color', required: true },
+          color: { type: 'string', pattern: color, required: true },
           distance: { $ref: '/Distance', required: true },
         },
       },
@@ -114,9 +118,9 @@ const stylesSchema = {
     textAlign: {
       enum: ['auto', 'left', 'right', 'center', 'justify'],
     },
-    backgroundColor: { type: 'string', format: 'color' },
+    backgroundColor: { type: 'string', pattern: color },
     backgroundLinearGradient: { $ref: '/LinearGradient' },
-    color: { type: 'string', format: 'color' },
+    color: { type: 'string', pattern: color },
     boxShadow: {
       oneOf: [
         { $ref: '/Shadow' },
