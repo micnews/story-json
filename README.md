@@ -50,7 +50,6 @@ story-json-validate <story.json>
         {
           "type": "container",
           "styles": {
-            "flex": 1,
             "backgroundColor": "#87d687"
           }
         },
@@ -60,7 +59,7 @@ story-json-validate <story.json>
             "flexDirection": "column",
             "justifyContent": "center",
             "alignItems": "center",
-            "flex": 1
+            "textAlign": "center"
           },
           "elements": [
             {
