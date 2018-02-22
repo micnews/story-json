@@ -262,19 +262,9 @@ See [more examples](https://github.com/micnews/story-json/tree/master/examples)
 
 | Property  | Description | Type | Required | Notes |
 | ------------- | ------------- | ------------- | ------------- | ------------- |
-| `layers` | Content of the page data | Array of [layers](#layer) | yes |
+| `layers` | Content of the page data | Array of [elements](#element) | yes |
 | `id` | Unique page identifier. | string | no |
 | `annotation` | User-defined information associated with the page. | any | no | Will be removed in render. |
-
-#### Layer
-
-| Property  | Description | Type | Required | Notes |
-| ------------- | ------------- | ------------- | ------------- | ------------- |
-| `template` | Layer type (*all templates are deprecated except `fill`, which is going to be a default*). | `'fill'`, `'thirds'`, `'vertical'` or `'horizontal'` | yes |
-| `elements` | Layer elements. | Array of [elements](#element) | no | Has no effect in layers with `template: 'fill'`. |
-| `element` | Layer element in a layer with `template: 'fill'`. | [Element](#element) | no | Has no effect in layers without `template: 'fill'`.|
-| `styles` | Layer styles. | [Styles object](#styles) | no |
-| `annotation` | User-defined information associated with the layer | any | no | Will be removed in render. |
 
 #### Element
 
