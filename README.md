@@ -308,7 +308,7 @@ Styles are very similar to CSS styles, but are intended to be usable and easy to
 | `borderTopRightRadius` | Element top-right border radius | number | no |
 | `borderBottomLeftRadius` | Element bottom-left border radius | number | no |
 | `borderBottomRightRadius` | Element bottom-right border radius | number | no |
-| `display` | Display type | `'flex'`, or `'none'` | no |
+| `display` | Display type | `'flex'`, `'none'` or `inline` (text elements only) | no |
 | `flexDirection` | `'row'`, `'row-reverse'`, `'column'`, or `'column-reverse'` | string | no |
 | `justifyContent` | `'flex-start'`, `'center'`, `'flex-end'`, `'space-around'`, or `'space-between'` | string | no |
 | `alignItems` | `'flex-start'`, `'center'`, `'flex-end'`, or `'stretch'` | string | no |
