@@ -18,25 +18,31 @@ if (argv.help) {
   usage();
 }
 
-const input = argv._[0];
-if (!input) {
+if (!argv._[0]) {
   usage();
 }
 
-let json;
-try {
-  json = JSON.parse(fs.readFileSync(input, 'utf8'));
-} catch (e) {
-  console.error(`Unable to load json ${input}`);
-  process.exit(1);
-}
+argv._.forEach((input) => {
+  let json;
+  try {
+    json = JSON.parse(fs.readFileSync(input, 'utf8'));
+  } catch (e) {
+    console.error(`Unable to load json ${input}`);
+    process.exit(1);
+  }
 
-const res = validate(json);
-if (!res.valid) {
-  console.log(`VALIDATION ERRORS IN ${input}:`);
-  res.errors.forEach((err) => {
-    console.log('-', err.toString());
-    console.log(`    ${JSON.stringify(err.instance, null, 2).split('\n').join('\n    ')}`);
-  });
-  process.exit(1);
-}
+  const res = validate(json);
+  if (!res.valid) {
+    console.log(`VALIDATION ERRORS IN ${input}:`);
+    res.errors.forEach((err) => {
+      console.log('-', err.toString());
+      const errorInstance = JSON.stringify(err.instance, null, 2);
+      if (errorInstance) {
+        console.log(`    ${errorInstance.split('\n').join('\n    ')}`);
+      }
+    });
+    process.exit(1);
+  } else {
+    console.log(`${input} is valid`);
+  }
+});
